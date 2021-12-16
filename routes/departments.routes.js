@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-// const ObjectId = require('mongodb').ObjectId; // Nadawane przez MongoDB _id nie jest stringiem, jednak req.params.id. Należy więc skonwertować req.params.id do typu ObjectId właśnie za pomocą funkcji ObjectId
 const Department = require('../models/department.model');
 
 router.get('/departments', async (req, res) => {
