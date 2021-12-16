@@ -60,8 +60,9 @@ router.put('/departments/:id', async (req, res) => {
   try {
     const dep = await Department.findById(req.params.id);
     if(dep) {
-      dep.name = name;
-      await dep.save();
+      await Department.findByIdAndUpdate({ _id: req.params.id }, {name: name}, (err, updated) => {
+        console.log('updated', updated)
+      });
       res.json({ message: 'OK' });
     }
     else res.status(404).json({ message: 'Not found...' });
@@ -77,7 +78,9 @@ router.delete('/departments/:id', async (req, res) => {
   try {
     const dep = await Department.findById(req.params.id);
     if(dep) {
-      await Department.deleteOne({ _id: req.params.id });
+      await Department.findByIdAndDelete({ _id: req.params.id }, (err, deleted) => {
+        console.log('deleted', deleted)
+      });
       res.json({ message: 'OK' });
     }
     else res.status(404).json({ message: 'Not found...' });
@@ -89,3 +92,4 @@ router.delete('/departments/:id', async (req, res) => {
 });
 
 module.exports = router;
+
