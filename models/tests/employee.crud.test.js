@@ -123,7 +123,6 @@ describe('Employee', () => {
         const emp = await Employee.find();
         expect(emp.length).to.be.equal(0);
     });
-  
   });
 
   after(() => {
